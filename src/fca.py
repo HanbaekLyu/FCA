@@ -18,6 +18,7 @@ from sklearn.decomposition import PCA ### Use truncated SVD / online PCA later f
 import warnings
 from scipy.stats import bernoulli
 import random
+from tqdm import trange
 
 warnings.filterwarnings("ignore")
 
@@ -62,7 +63,7 @@ def FCA_nx(G, s, k, iteration):
 
     return ret, synchronize
 
-def FCA_nn(G, s, k, p1=1, p2=1, iteration=10):
+def FCA_nn(G, s, k, p1=1, p2=1, iteration=10, verbose=False):
     """
     Implements the Firefly Cellular Automata model (as part of REU2022@UW-Madison)
        Author: Bella Wu
@@ -83,7 +84,11 @@ def FCA_nn(G, s, k, p1=1, p2=1, iteration=10):
     nodes = G.vertices
     trajectory = [np.asarray(s)]
 
-    for h in range(iteration):
+    rg = range(iteration)
+    if verbose:
+        rg = trange(iteration)
+
+    for h in rg:
         if h != 0:
             s = s_next #update to the newest state
             #ret = np.vstack((ret, s_next))
@@ -198,6 +203,12 @@ def width_compute(coloring, kappa):
         differences.append(np.max(shifted) - np.min(shifted))
     return np.min(differences)
 
+def order_param(coloring, kappa):
+    '''
+    Compute global order parameter R_t - mean length of resultant vector
+    '''
+    suma = sum([(np.e ** (1j * coloring[i]/kappa)) for i in range(len(coloring))])
+    return abs(suma / len(coloring))
 
 # FCA_iter: total iteration for the FCA model, used for label
 # baseline_iter: the iteration for baseline model, usually less than FCA_iter
