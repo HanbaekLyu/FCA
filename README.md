@@ -3,10 +3,10 @@
 <br/> This repository contains the scripts that generate the main figures reported in the paper: <br/>
 
 Hanbaek Lyu, \
-[*"Synchronization of finite-state pulse-coupled oscillators"*], Physica D: Nonlinear Phenomena 303 (2015): 28-38 (http://www.sciencedirect.com/science/article/pii/S0167278915000536) 
+*"Synchronization of finite-state pulse-coupled oscillators"*, Physica D: Nonlinear Phenomena 303 (2015): 28-38 (http://www.sciencedirect.com/science/article/pii/S0167278915000536) 
 
 Hanbaek Lyu, \
-[*"Time complexity of Synchronization of discrete pulse-coupled oscillators on trees"*] arXiv Preprint (2023) (https://arxiv.org/abs/1610.00837)
+*"Time complexity of Synchronization of discrete pulse-coupled oscillators on trees"* arXiv Preprint (2023) (https://arxiv.org/abs/1610.00837)
 
 &nbsp;
 
