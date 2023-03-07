@@ -204,11 +204,26 @@ def width_compute(coloring, kappa):
     return np.min(differences)
 
 def order_param(coloring, kappa):
+    import math
     '''
     Compute global order parameter R_t - mean length of resultant vector
     '''
-    suma = sum([(np.e ** (1j * coloring[i]/kappa)) for i in range(len(coloring))])
+    suma = sum([(np.e ** (1j * 2 * math.pi * coloring[i]/kappa)) for i in range(len(coloring))])
     return abs(suma / len(coloring))
+
+def get_period(X, kappa=4):
+    # X = T (time) by k (nodes)
+    if width_compute(X[-1], kappa=kappa) == 0:
+        return kappa
+    else:
+        j = -2
+        period = 1
+        while np.linalg.norm(X[j] - X[-1])>0:
+            j -= 1
+            period += 1
+        if np.abs(j) == len(X):
+            period = -1
+        return period
 
 # FCA_iter: total iteration for the FCA model, used for label
 # baseline_iter: the iteration for baseline model, usually less than FCA_iter
